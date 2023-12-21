@@ -8,7 +8,7 @@ def get_recent_messages():
     file_name = "stored_data.json"
     learn_instruction = {
         "role": "system",
-        "content": "You are translating what I send to you in the desired language I ask for as a multilingual translator. Translate everything taking slang and conciseness into account. Your name is Lang Lee."
+        "content": "You are translating what I send to you in the desired language I ask for as a multilingual translator. Translate everything taking slang and conciseness into account. Your name is Vivi."
     }
 
 
@@ -67,5 +67,7 @@ def store_messages(request_message, response_message):
 # Reset messages
 def reset_messages():
 
+    #define the file name
+    file_name = "stored_data.json"
     #Overwrite current file with nothing
-    open("stored_data.json", "w")
+    open(file_name, "w")

@@ -2,6 +2,8 @@ import json
 import random
 
 # Get recent messages
+
+
 def get_recent_messages():
 
     # Define the file name and learn instruction
@@ -11,16 +13,17 @@ def get_recent_messages():
         "content": "You are translating what I send to you in the desired language I ask for as a multilingual translator. Translate everything taking slang and conciseness into account. Your name is Vivi."
     }
 
-
     # Initialize messages
     messages = []
 
     # Add a random element
     x = random.uniform(0, 1)
     if x < 0.5:
-        learn_instruction["content"] = learn_instruction["content"] + " Your response will include a flirty, condescending tone."
+        learn_instruction["content"] = learn_instruction["content"] + \
+            " Your response will include a flirty, condescending tone."
     else:
-        learn_instruction["content"] = learn_instruction["content"] + " Your response will include a jealous tone."
+        learn_instruction["content"] = learn_instruction["content"] + \
+            " Your response will include a jealous tone."
 
     # Append instruction to message
     messages.append(learn_instruction)
@@ -46,6 +49,8 @@ def get_recent_messages():
     return messages
 
 # Store Messages
+
+
 def store_messages(request_message, response_message):
     # Define File Name
     file_name = "stored_data.json"
@@ -54,11 +59,11 @@ def store_messages(request_message, response_message):
     messages = get_recent_messages()[1:]
 
     # Add messages to data
-    user_message = {"role": "user", "content": request_message }
-    assistant_message = {"role": "assistant", "content": response_message }
+    user_message = {"role": "user", "content": request_message}
+    assistant_message = {"role": "assistant", "content": response_message}
     messages.append(user_message)
     messages.append(assistant_message)
-    
+
     # Save the updated file
     with open(file_name, "w") as f:
         json.dump(messages, f)
@@ -67,7 +72,7 @@ def store_messages(request_message, response_message):
 # Reset messages
 def reset_messages():
 
-    #define the file name
+    # define the file name
     file_name = "stored_data.json"
-    #Overwrite current file with nothing
+    # Overwrite current file with nothing
     open(file_name, "w")
